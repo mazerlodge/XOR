@@ -26,8 +26,6 @@ int main (int argc, char *argv[]) {
 			int rawcount = 0;
 			char q;
 			while ((byte = getc(in)) != EOF) {
-				// The following line determines if key pointer is pointing at null. 
-				//   if it is, it repoints key to the beginning of the argv[1] string.
 				if (strcmp(key, "42") == 0) {
 					// do fixed key version
 					byte ^= keyF[idx++];
@@ -39,8 +37,10 @@ int main (int argc, char *argv[]) {
 				}
 				else {
 					// do 'standard' version.
+					// The following line determines if key pointer is pointing at null. 
+					//   if it is, it repoints key to the beginning of the argv[1] string.
 					if (!*key) {
-							key = argv[1]; 
+						key = argv[1]; 
 					}
 					byte ^= *(key++);
 					putc(byte,out);
